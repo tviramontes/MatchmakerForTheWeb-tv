@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en"></html>
+
+<!--
+    Author: Trey Viramontes
+    Project: MatchmakerWeb
+
+    All rights reserved
+-->
+
+<head>
+    <meta charset="UTF-8">
+    <title>Matchmaker Web</title>
+</head>
+
+<body>
+    <hl> Matchmaker Web</hl>
+    <p>Instructions: Are we compatible? This application will determine if you are similar with me. For each question you will select an answer from the drop down menu. When finished, selecter calculate compatibility to access our compatibility score.</p>
+
+    <label>I love watching sports.</label><br />
+    <select id="q1">
+        <option value="5">Strongly Agree</option>
+        <option value="4">Agree</option>
+        <option value="3">Neither agree or disagree</option>
+        <option value="2">Disagree</option>
+        <option value="1">Strongly Disagree</option>
+    </select>
+    <br /><br />
+    
+
+    <label>Dogs are the best pets.</label><br />
+    <select id="q2">
+        <option value="5">Strongly Agree</option>
+        <option value="4">Agree</option>
+        <option value="3">Neither agree or disagree</option>
+        <option value="2">Disagree</option>
+        <option value="1">Strongly Disagree</option>
+        </select>
+        <br /><br />
+
+        <label>Marvel is better than DC.</label><br />
+    <select id="q3">
+        <option value="5">Strongly Agree</option>
+        <option value="4">Agree</option>
+        <option value="3">Neither agree or disagree</option>
+        <option value="2">Disagree</option>
+        <option value="1">Strongly Disagree</option>
+        </select>
+        <br /><br />
+
+        <label>The Office is the best TV show.</label><br />
+    <select id="q4">
+        <option value="5">Strongly Agree</option>
+        <option value="4">Agree</option>
+        <option value="3">Neither agree or disagree</option>
+        <option value="2">Disagree</option>
+        <option value="1">Strongly Disagree</option>
+        </select>
+        <br /><br />
+
+        <label>Lebron James is better than Michael Jordan.</label><br />
+    <select id="q5">
+        <option value="5">Strongly Agree</option>
+        <option value="4">Agree</option>
+        <option value="3">Neither agree or disagree</option>
+        <option value="2">Disagree</option>
+        <option value="1">Strongly Disagree</option>
+        </select>
+        <br /><br />
+
+
+        
+        <br /><br /><br />
+        <button onclick = "calculateCompatiblity()">Calculate Compatibility</button>
+        <p id = "compatibility"></p>
+
+    <script>
+    console.log("Starting Matchmaker Web...");
+
+    function calculateCompatiblity() {
+        console.log("calculateCompatiblity()"); 
+
+        const DESIRED_ANSWERS = [
+            5, /* strongly agree */
+            5, /* strongly agree */
+            5, /* strongly agree */
+            5, /* strongly agree */
+            5, /* strongly agree */
+        ]
+
+        const MAX_SCORE = 25;
+
+
+        let question1Response = document.getElementById("q1").selectedOptions[0].value;
+        let question2Response = document.getElementById("q2").selectedOptions[0].value;
+        let question3Response = document.getElementById("q3").selectedOptions[0].value;            
+        let question4Response = document.getElementById("q4").selectedOptions[0].value;
+        let question5Response = document.getElementById("q5").selectedOptions[0].value;
+
+
+        console.log("Question 1 Answer:")
+        console.log(document.getElementById("q1").selectedOptions[0].text);
+        console.log(document.getElementById("q1").selectedOptions[0].value);
+        console.log(question1Response);
+
+        console.log("Question 2 Answer:")
+        console.log(document.getElementById("q2").selectedOptions[0].text);
+        console.log(document.getElementById("q2").selectedOptions[0].value);
+        console.log(question2Response);
+
+        console.log("Question 3 Answer:")
+        console.log(document.getElementById("q3").selectedOptions[0].text);
+        console.log(document.getElementById("q3").selectedOptions[0].value);
+        console.log(question3Response);
+
+        console.log("Question 4 Answer:")
+        console.log(document.getElementById("q4").selectedOptions[0].text);
+        console.log(document.getElementById("q4").selectedOptions[0].value);
+        console.log(question4Response);
+
+        console.log("Question 5 Answer:")
+        console.log(document.getElementById("q5").selectedOptions[0].text);
+        console.log(document.getElementById("q5").selectedOptions[0].value);
+        console.log(question5Response);
+
+
+        let compatibility1 = 5 - Math.abs(question1Response - DESIRED_ANSWERS[0]);
+        let compatibility2 = 5 - Math.abs(question2Response - DESIRED_ANSWERS[1]);
+        let compatibility3 = 5 - Math.abs(question3Response - DESIRED_ANSWERS[2]);            
+        let compatibility4 = 5 - Math.abs(question4Response - DESIRED_ANSWERS[3]);
+        let compatibility5 = 5 - Math.abs(question5Response - DESIRED_ANSWERS[4]);
+
+
+        console.log("c1="+compatibility1);
+        console.log("c2="+compatibility2);
+        console.log("c3="+compatibility3);
+        console.log("c4="+compatibility4);
+        console.log("c5="+compatibility5);
+
+        let totalCompatibility = compatibility1 + compatibility2 + compatibility3 + compatibility4 + compatibility5;
+
+        totalCompatibility *= 100 / MAX_SCORE;
+        totalCompatibility = Math.round(totalCompatibility);
+        console.log("totalCompatibility="+ totalCompatibility);
+           
+        document.getElementById("compatibility").innerHTML = "Your compatibility is: " + totalCompatibility;
+    }    
+            
+
+
+    </script>
+    </body>
+    </html>
